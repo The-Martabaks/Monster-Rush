@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraChange : MonoBehaviour
 {
     public GameObject CameraCharacter, CameraMain;
+    public StarterAssets.ThirdPersonController thirdPersonController;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -13,13 +15,15 @@ public class CameraChange : MonoBehaviour
             CameraMain.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            // GameObject.GetComponent<CharacterController>().enabled = false;
+            thirdPersonController.enabled = false;
         }
+
         if (Input.GetKeyDown(KeyCode.C))
         {
             CameraCharacter.SetActive(true);
             CameraMain.SetActive(false);
             Cursor.visible = false;
+            thirdPersonController.enabled = true;
         }
     }
 
