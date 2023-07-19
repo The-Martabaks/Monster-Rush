@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class BuildViewMovement : MonoBehaviour
 {
     private Vector3 Velocity;
     private Vector3 PlayerMovementInput;
@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float Sensitivity;
 
     void Update() {
-        PlayerMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        PlayerMovementInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        PlayerMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         MovePlayer();
         MovePlayerCamera();
