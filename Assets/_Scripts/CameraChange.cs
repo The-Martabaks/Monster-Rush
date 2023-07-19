@@ -12,6 +12,9 @@ public class CameraChange : MonoBehaviour
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 8a2f08a (UI and Prototype Done)
+=======
 >>>>>>> parent of 8a2f08a (UI and Prototype Done)
 =======
 >>>>>>> parent of 8a2f08a (UI and Prototype Done)
@@ -26,7 +29,10 @@ public class CameraChange : MonoBehaviour
             thirdPersonController.enabled = false;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             // GameObject.GetComponent<CharacterController>().enabled = false;
+=======
+>>>>>>> parent of 8a2f08a (UI and Prototype Done)
 =======
 >>>>>>> parent of 8a2f08a (UI and Prototype Done)
 =======
