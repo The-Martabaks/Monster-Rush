@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Scripts/CameraViewChange.cs.meta
+guid: 1086dbd2d03134c4b959b557ee883bea
+========
+guid: 2f304971100781f4da2cf25fb2c02466
+>>>>>>>> parent of 8a2f08a (UI and Prototype Done):Assets/_Scripts/Follow.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -31,14 +31,4 @@ public class CameraChange : MonoBehaviour
             GuideBuild.SetActive(false);
         }
     }
-
-    // public void camerachange(){
-
-    //     if (Input.GetKeyDown(KeyCode.C))
-    //     {
-    //         CameraCharacter.SetActive(false);
-    //         CameraMain.SetActive(true);
-    //     }
-    //     
-    // }
 }
