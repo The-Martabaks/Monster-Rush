@@ -11,6 +11,9 @@ public class CameraChange : MonoBehaviour
     
 =======
 
+<<<<<<< HEAD
+>>>>>>> parent of 8a2f08a (UI and Prototype Done)
+=======
 >>>>>>> parent of 8a2f08a (UI and Prototype Done)
     private void Update()
     {
@@ -22,7 +25,10 @@ public class CameraChange : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             thirdPersonController.enabled = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // GameObject.GetComponent<CharacterController>().enabled = false;
+=======
+>>>>>>> parent of 8a2f08a (UI and Prototype Done)
 =======
 >>>>>>> parent of 8a2f08a (UI and Prototype Done)
         }
