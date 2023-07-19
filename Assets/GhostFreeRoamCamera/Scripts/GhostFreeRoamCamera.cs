@@ -24,6 +24,7 @@ public class GhostFreeRoamCamera : MonoBehaviour
 
     CameraChange CCScript;
 
+    [System.Obsolete]
     private void OnEnable()
     {
         if (cursorToggleAllowed)
@@ -33,6 +34,7 @@ public class GhostFreeRoamCamera : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     private void Update()
     {
         if (allowMovement)

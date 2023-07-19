@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraChange : MonoBehaviour
 {
-    public GameObject CameraCharacter, CameraMain;
+    public GameObject CameraCharacter, CameraBuild;
     public StarterAssets.ThirdPersonController thirdPersonController;
 
     private void Update()
@@ -12,7 +12,7 @@ public class CameraChange : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CameraCharacter.SetActive(false);
-            CameraMain.SetActive(true);
+            CameraBuild.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             thirdPersonController.enabled = false;
@@ -21,7 +21,7 @@ public class CameraChange : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             CameraCharacter.SetActive(true);
-            CameraMain.SetActive(false);
+            CameraBuild.SetActive(false);
             Cursor.visible = false;
             thirdPersonController.enabled = true;
         }
