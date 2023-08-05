@@ -73,7 +73,7 @@ public class EntitySummoner : MonoBehaviour
         return SummonEnemy;
     }
 
-    public static void RemoveEmeny(Enemy EnemyToRemove)
+    public static void RemoveEnemy(Enemy EnemyToRemove)
     {
         EnemyObjectPools[EnemyToRemove.ID].Enqueue(EnemyToRemove);
         EnemyToRemove.gameObject.SetActive(false);
