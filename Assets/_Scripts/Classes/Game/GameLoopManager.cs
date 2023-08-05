@@ -16,6 +16,15 @@ public class GameLoopManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
         InvokeRepeating("SummonTest", 0f, 1f);
+        InvokeRepeating("RemoveTest", 0f, 0.5f);
+    }
+
+    void RemoveTest()
+    {
+        if(EntitySummoner.EnemiesInGame.Count > 0);
+        {
+            EntitySummoner.RemoveEmeny(EntitySummoner.EnemiesInGame[Random.Range(0, EntitySummoner.EnemiesInGame.Count)]);
+        }
     }
 
     void SummonTest()
