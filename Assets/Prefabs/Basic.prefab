@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 983775858171152104}
   - component: {fileID: 6283722613054493403}
+  - component: {fileID: 423650388644074240}
   m_Layer: 0
   m_Name: Basic
   m_TagString: Untagged
@@ -49,6 +50,20 @@ MonoBehaviour:
   Healt: 0
   Speed: 4
   ID: 0
+--- !u!136 &423650388644074240
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541144509856808471}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &175833124792106540
 PrefabInstance:
   m_ObjectHideFlags: 0
