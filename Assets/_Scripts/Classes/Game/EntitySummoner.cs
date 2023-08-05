@@ -57,7 +57,7 @@ public class EntitySummoner : MonoBehaviour
             else
             {
                 // Instantiate new instance of enemy and initialize
-                GameObject NewEnemy = Instantiate(EnemyPrefarbs[EnemyID], Vector3.zero, Quaternion.identity);
+                GameObject NewEnemy = Instantiate(EnemyPrefarbs[EnemyID], new Vector3(5f,-0.5f,150f), Quaternion.identity);
                 SummonEnemy = NewEnemy.GetComponent<Enemy>();
                 SummonEnemy.Init();
             }
