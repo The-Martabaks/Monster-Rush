@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySummonData : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[CreateAssetMenu(fileName = "New EnemySummonData", menuName = "Create EnemySummonData")]
+public class EnemySummonData : ScriptableObject
+{
+   public GameObject EnemyPrefarb;
+   public int EnemyID;
 }

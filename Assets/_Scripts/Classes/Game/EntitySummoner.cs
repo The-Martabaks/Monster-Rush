@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EntitySummoner : MonoBehaviour
 {
-    // Start is called before the first frame update
+// List for keeping track of all enemy currently alive within scene
+    public static List<Enemy> EnemiesInGame;
+    public static Dictionary<int, GameObject> EnemyPrefarbs;
+    // For Handling many enemy types will summon
+    public static Dictionary<int, Queue<Enemy>> EnemyObjectPools;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        EnemyPrefarbs = new Dictionary<int, GameObject>();
+        EnemyObjectPools = new Dictionary<int, Queue<Enemy>>();
+        EnemiesInGame = new List<Enemy>();
     }
 }

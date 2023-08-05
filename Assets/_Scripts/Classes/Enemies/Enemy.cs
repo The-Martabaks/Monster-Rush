@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-  public float maxHealt;
+  public float MaxHealt;
   public float Healt;
   public float Speed;
   public float ID;
@@ -13,6 +13,6 @@ public class Enemy : MonoBehaviour
     // Initialization
   public void Init()
   {
-    maxHealt = Healt;
+    MaxHealt = Healt;
   }
 }
