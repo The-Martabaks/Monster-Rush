@@ -36,7 +36,7 @@ public class EntitySummoner : MonoBehaviour
         }
         else
         {
-            Debug.Log("ENTITYSUMMONER: THIS CLASS IS READY INITIALIZED")
+            Debug.Log("ENTITYSUMMONER: THIS CLASS IS READY INITIALIZED");
         }
     }
 
@@ -63,8 +63,8 @@ public class EntitySummoner : MonoBehaviour
         }
         else
         {
-            Debug.Log($"ENTITYSUMMONER: ENEMY WITH ID OF {EnemyID} DOES NOT EXIST!")
-            return null
+            Debug.Log($"ENTITYSUMMONER: ENEMY WITH ID OF {EnemyID} DOES NOT EXIST!");
+            return null;
         }
 
         EnemiesInGame.Add(SummonEnemy);
