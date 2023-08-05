@@ -9,7 +9,7 @@ public class GameLoopManager : MonoBehaviour
 
     public bool LoopShouldEnd;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         EnemyIDsToSummon = new Queue<int>();
         EntitySummoner.Init();
@@ -21,9 +21,9 @@ public class GameLoopManager : MonoBehaviour
 
     void RemoveTest()
     {
-        if(EntitySummoner.EnemiesInGame.Count > 0);
+        if(EntitySummoner.EnemiesInGame.Count > 0)
         {
-            EntitySummoner.RemoveEmeny(EntitySummoner.EnemiesInGame[Random.Range(0, EntitySummoner.EnemiesInGame.Count)]);
+            EntitySummoner.RemoveEnemy(EntitySummoner.EnemiesInGame[Random.Range(0, EntitySummoner.EnemiesInGame.Count)]);
         }
     }
 
