@@ -14,5 +14,9 @@ public class EntitySummoner : MonoBehaviour
         EnemyPrefarbs = new Dictionary<int, GameObject>();
         EnemyObjectPools = new Dictionary<int, Queue<Enemy>>();
         EnemiesInGame = new List<Enemy>();
+
+        // Load all asset from Resources folder
+        EnemySummonData[] Enemies = Resources.LoadAll<EnemySummonData>("Enemies");
+        Debug.Log(Enemies[0].name);
     }
 }
