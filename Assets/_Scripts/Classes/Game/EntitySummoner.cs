@@ -52,7 +52,7 @@ public class EntitySummoner : MonoBehaviour
                 // Dequeue Enemy and Initialize
                 SummonEnemy = ReferenceQueue.Dequeue();
                 SummonEnemy.Init();
-                SummonEnemy.gameObject.SetActive(true);
+                //SummonEnemy.gameObject.SetActive(true);
             }
             else
             {
@@ -76,7 +76,7 @@ public class EntitySummoner : MonoBehaviour
     public static void RemoveEnemy(Enemy EnemyToRemove)
     {
         EnemyObjectPools[EnemyToRemove.ID].Enqueue(EnemyToRemove);
-        EnemyToRemove.gameObject.SetActive(false);
+        //EnemyToRemove.gameObject.SetActive(false);
         EnemiesInGame.Remove(EnemyToRemove);
     }
 
