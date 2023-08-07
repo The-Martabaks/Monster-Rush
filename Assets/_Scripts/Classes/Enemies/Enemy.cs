@@ -17,5 +17,6 @@ public class Enemy : MonoBehaviour
   {
     MaxHealt = Healt;
     transform.position = GameLoopManager.NodePositions[0];
+    NodeIndex = 0;
   }
 }
