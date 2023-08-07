@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+  // FOr movement enemy to other node of parent
+  public int NodeIndex;
   public float MaxHealt;
   public float Healt;
   public float Speed;
