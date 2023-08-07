@@ -1238,6 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022b4c26048ed2a45b8afe63ff6e787a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NodeParent: {fileID: 669988734}
   LoopShouldEnd: 0
 --- !u!4 &525022108
 Transform:
