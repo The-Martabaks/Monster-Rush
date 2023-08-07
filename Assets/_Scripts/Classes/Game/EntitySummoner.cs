@@ -55,13 +55,13 @@ public class EntitySummoner : MonoBehaviour
                 // Dequeue Enemy and Initialize
                 SummonEnemy = ReferenceQueue.Dequeue();
                 SummonEnemy.Init();
-                //SummonEnemy.gameObject.SetActive(true);
+                SummonEnemy.gameObject.SetActive(true);
             }
             else
             {
                 // Instantiate new instance of enemy and initialize
-                Vector3 Spawn = new Vector3(Random.Range(2,8),-0.5f, Random.Range(147, 150));
-                GameObject NewEnemy = Instantiate(EnemyPrefarbs[EnemyID], Spawn, Quaternion.identity);
+                // Vector3 Spawn = new Vector3(Random.Range(2,8),-0.5f, Random.Range(147, 150));
+                GameObject NewEnemy = Instantiate(EnemyPrefarbs[EnemyID], GameLoopManager.NodePositions[0], Quaternion.identity);
                 SummonEnemy = NewEnemy.GetComponent<Enemy>();
                 SummonEnemy.Init();
             }
@@ -80,7 +80,7 @@ public class EntitySummoner : MonoBehaviour
     public static void RemoveEnemy(Enemy EnemyToRemove)
     {
         EnemyObjectPools[EnemyToRemove.ID].Enqueue(EnemyToRemove);
-        //EnemyToRemove.gameObject.SetActive(false);
+        EnemyToRemove.gameObject.SetActive(false);
         EnemiesInGame.Remove(EnemyToRemove);
         EnemiesInGameTransform.Remove(EnemyToRemove.transform);
     }
