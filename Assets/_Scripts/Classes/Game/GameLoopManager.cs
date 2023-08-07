@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Jobs;
 using UnityEngine;
 
 public class GameLoopManager : MonoBehaviour
 {
-    public static Vector3[] NodePosition;
+    public static Vector3[] NodePositions;
 
     public Transform NodeParent;
 
@@ -18,11 +19,10 @@ public class GameLoopManager : MonoBehaviour
         EnemyIDsToSummon = new Queue<int>();
         EntitySummoner.Init();
 
-        NodePosition = new Vector3[NodeParent.childCount];
-
-        for (i = 0; NodePosition.Lenght; i++)
+        NodePositions = new Vector3[NodeParent.childCount];
+        for (int i = 0; i < NodePositions.Length; i++)
         {
-            NodePosition[i] = NodeParent.GetChild(i).position;
+            NodePositions[i] = NodeParent.GetChild(i).position;
         }
 
         StartCoroutine(GameLoop());
@@ -74,7 +74,7 @@ public class GameLoopManager : MonoBehaviour
             //Remove Enemies
             if(EnemiesToRemove.Count > 0)
             {
-                for(i = 0; i < EnemiesToRemove.Count; i++)
+                for(int i = 0; i < EnemiesToRemove.Count; i++)
                 {
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
