@@ -74,7 +74,7 @@ public class GameLoopManager : MonoBehaviour
             for(int i = 0; i < EntitySummoner.EnemiesInGame.Count; i++)
             {
                 EnemySpeeds[i] = EntitySummoner.EnemiesInGame[i].Speed;
-                NodeIndices[i] = EntitySummoner.EnemiesInGame[i.NodeIndex;]
+                NodeIndices[i] = EntitySummoner.EnemiesInGame[i].NodeIndex;
             }
 
             MoveEnemiesJob MoveJob = new MoveEnemiesJob
@@ -154,7 +154,7 @@ public struct MoveEnemiesJob : IjobParallerForTransform
     {
         if(NodeIndex[index] < NodePositions.Length)
         {
-            
+
         }
         Vector3 PositionMoveTo = NodePositions[NodeIndex[index]];
         transform.position = Vector3.MoveTowards(transform.position, PositionMoveTo, EnemySpeed[index] * deltaTime);
