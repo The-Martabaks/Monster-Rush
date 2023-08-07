@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Jobs;
 using UnityEngine.Jobs;
 using UnityEngine;
+using Unity.Collections;
 
 public class GameLoopManager : MonoBehaviour
 {
@@ -69,7 +71,7 @@ public class GameLoopManager : MonoBehaviour
             NativeArray<Vector3> NodeToUse = new NativeArray<Vector3>(NodePositions, Allocator.TempJob);
             NativeArray<float> EnemySpeeds = new NativeArray<float>(EntitySummoner.EnemiesInGame.Count, Allocator.TempJob);
             NativeArray<int> NodeIndices = new NativeArray<int>(EntitySummoner.EnemiesInGame.Count, Allocator.TempJob);
-            TransformAccesArray EnemyAcces = new TransformAccesArray(EntitySummoner.EnemiesInGameTransform.ToArray(), 2);
+            TransformAccessArray EnemyAcces = new TransformAccessArray(EntitySummoner.EnemiesInGameTransform.ToArray(), 2);
 
             for(int i = 0; i < EntitySummoner.EnemiesInGame.Count; i++)
             {
@@ -146,7 +148,7 @@ public struct MoveEnemiesJob : IJobParallelForTransform
     public NativeArray<float> EnemySpeed;
 
     [NativeDisableParallelForRestriction]
-    public NativeArray<int> NodeIndices;
+    public NativeArray<int> NodeIndex;
     
     public float deltaTime;
 
