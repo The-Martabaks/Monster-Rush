@@ -137,20 +137,20 @@ public class GameLoopManager : MonoBehaviour
 
 }
 
-public struct MoveEnemiesJob : IjobParallerForTransform
+public struct MoveEnemiesJob : IJobParallelForTransform
 {
-    [NativeDisableParallerForRestriction]
+    [NativeDisableParallelForRestriction]
     public NativeArray<Vector3> NodePositions;
 
-    [NativeDisableParallerForRestriction]
+    [NativeDisableParallelForRestriction]
     public NativeArray<float> EnemySpeed;
 
-    [NativeDisableParallerForRestriction]
+    [NativeDisableParallelForRestriction]
     public NativeArray<int> NodeIndices;
     
     public float deltaTime;
 
-    public void Execute(int index, TransformAcces transform)
+    public void Execute(int index, TransformAccess transform)
     {
         if(NodeIndex[index] < NodePositions.Length)
         {
