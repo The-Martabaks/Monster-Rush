@@ -82,7 +82,7 @@ public class EntitySummoner : MonoBehaviour
         EnemyObjectPools[EnemyToRemove.ID].Enqueue(EnemyToRemove);
         //EnemyToRemove.gameObject.SetActive(false);
         EnemiesInGame.Remove(EnemyToRemove);
-        EnemiesInGameTransform.Remove(EnemyToRemove);
+        EnemiesInGameTransform.Remove(EnemyToRemove.transform);
     }
 
 }
