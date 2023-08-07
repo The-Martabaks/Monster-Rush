@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EntitySummoner : MonoBehaviour
 {
-// List for keeping track of all enemy currently alive within scene
+    // List for keeping track of all enemy currently alive within scene
     public static List<Enemy> EnemiesInGame;
+    // List for Enemies in Game Transform
+    public static List<Transform> EnemiesInGameTransform;
     public static Dictionary<int, GameObject> EnemyPrefarbs;
     // For Handling many enemy types will summon
     public static Dictionary<int, Queue<Enemy>> EnemyObjectPools;
@@ -19,6 +21,7 @@ public class EntitySummoner : MonoBehaviour
             EnemyPrefarbs = new Dictionary<int, GameObject>();
             EnemyObjectPools = new Dictionary<int, Queue<Enemy>>();
             EnemiesInGame = new List<Enemy>();
+            EnemiesInGameTransform = new List<Transform>();
 
             // Load all asset from Resources folder
             EnemySummonData[] Enemies = Resources.LoadAll<EnemySummonData>("Enemies");
@@ -68,17 +71,18 @@ public class EntitySummoner : MonoBehaviour
             Debug.Log($"ENTITYSUMMONER: ENEMY WITH ID OF {EnemyID} DOES NOT EXIST!");
             return null;
         }
-
+        EnemiesInGameTransform.Add(SummonEnemy.transform);
         EnemiesInGame.Add(SummonEnemy);
         SummonEnemy.ID = EnemyID;
         return SummonEnemy;
     }
 
-    // public static void RemoveEnemy(Enemy EnemyToRemove)
-    // {
-    //     EnemyObjectPools[EnemyToRemove.ID].Enqueue(EnemyToRemove);
-    //     //EnemyToRemove.gameObject.SetActive(false);
-    //     EnemiesInGame.Remove(EnemyToRemove);
-    // }
+    public static void RemoveEnemy(Enemy EnemyToRemove)
+    {
+        EnemyObjectPools[EnemyToRemove.ID].Enqueue(EnemyToRemove);
+        //EnemyToRemove.gameObject.SetActive(false);
+        EnemiesInGame.Remove(EnemyToRemove);
+        EnemiesInGameTransform.Remove(EnemyToRemove);
+    }
 
 }
