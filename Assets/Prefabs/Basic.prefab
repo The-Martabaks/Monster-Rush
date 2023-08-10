@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d86e966fc7b9bc4b810002be0d00abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NodeIndex: 0
   MaxHealt: 5
   Healt: 0
   Speed: 4
@@ -63,7 +64,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1001 &175833124792106540
 PrefabInstance:
   m_ObjectHideFlags: 0
