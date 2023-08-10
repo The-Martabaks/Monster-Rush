@@ -59,7 +59,7 @@ public class EntitySummoner : MonoBehaviour
             }
             else
             {
-                // Instantiate new instance of enemy and initialize
+                //Instantiate new instance of enemy and initialize
                 // Vector3 Spawn = new Vector3(Random.Range(2,8),-0.5f, Random.Range(147, 150));
                 GameObject NewEnemy = Instantiate(EnemyPrefarbs[EnemyID], GameLoopManager.NodePositions[0], Quaternion.identity);
                 SummonEnemy = NewEnemy.GetComponent<Enemy>();
