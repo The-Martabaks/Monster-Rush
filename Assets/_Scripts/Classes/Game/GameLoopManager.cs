@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Jobs;
 using UnityEngine.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
 using Unity.Collections;
 
@@ -99,6 +100,13 @@ public class GameLoopManager : MonoBehaviour
                     EnqueueEnemyToRemove(EntitySummoner.EnemiesInGame[i]);
                 }
             }
+ 
+            // if (MoveJobHandle.IsCompleted)
+            // {
+            //     Quaternion rotation = newRotations[0].normalized;
+ 
+            //     rb.MoveRotation(rotation);
+            // }
 
             NodeToUse.Dispose();
             EnemySpeeds.Dispose();
@@ -158,8 +166,15 @@ public struct MoveEnemiesJob : IJobParallelForTransform
         {
 
         }
+        // for moving
         Vector3 PositionMoveTo = NodePositions[NodeIndex[index]];
         transform.position = Vector3.MoveTowards(transform.position, PositionMoveTo, EnemySpeed[index] * deltaTime);
+
+        // for rotating
+        Vector3 targetDirection = transform.position - NodePositions[NodeIndex[index]];
+        quaternion rotation = quaternion.LookRotation(targetDirection, Vector3.up);
+        quaternion smoothRotation = math.slerp(transform.rotation, rotation, EnemySpeed[index] * deltaTime);
+        transform.rotation = smoothRotation;
 
         if(transform.position == PositionMoveTo)
         {
