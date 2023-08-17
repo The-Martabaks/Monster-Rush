@@ -8,7 +8,7 @@ public class TowerPlacement : MonoBehaviour
 
     private GameObject currentPlacingTower;
 
-
+    private Transform towerPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +24,10 @@ public class TowerPlacement : MonoBehaviour
             RaycastHit hitInfo;
             if(Physics.Raycast(camray, out hitInfo, 100f))
             {
+                towerPoint = hitInfo.collider.gameObject.transform;
                 if (hitInfo.collider.gameObject.CompareTag("CanPlace"))
                 {
-                    currentPlacingTower.transform.position = hitInfo.point;
+                    currentPlacingTower.transform.position = towerPoint.position;
                 }
                 
             }
