@@ -8,8 +8,10 @@ using Unity.Collections;
 
 public class GameLoopManager : MonoBehaviour
 {
-    public static Vector3[] NodePositions;
+    public static float[] NodeDistance;
+    public static List<TowerBehavior> TowerInGame;
 
+    public static Vector3[] NodePositions;
     public Transform NodeParent;
 
     private static Queue<Enemy> EnemiesToRemove;
@@ -19,13 +21,23 @@ public class GameLoopManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        TowerInGame = new List<TowerBehavior>();
+
         EnemyIDsToSummon = new Queue<int>();
-        EntitySummoner.Init();
         EnemiesToRemove = new Queue<Enemy>();
+        EntitySummoner.Init();
+
+
         NodePositions = new Vector3[NodeParent.childCount];
         for (int i = 0; i < NodePositions.Length; i++)
         {
             NodePositions[i] = NodeParent.GetChild(i).position;
+        }
+
+        NodeDistance = new float[NodePositions.Length - 1];
+        for (int i = 0; i < NodeDistance.Length; i++)
+        {
+            NodeDistance[i] = Vector3.Distance(NodePositions[i], NodePositions[i + 1]);
         }
 
         StartCoroutine(GameLoop());
