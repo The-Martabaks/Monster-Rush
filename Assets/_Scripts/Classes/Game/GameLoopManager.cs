@@ -27,7 +27,6 @@ public class GameLoopManager : MonoBehaviour
         EnemiesToRemove = new Queue<Enemy>();
         EntitySummoner.Init();
 
-
         NodePositions = new Vector3[NodeParent.childCount];
         for (int i = 0; i < NodePositions.Length; i++)
         {
@@ -42,16 +41,7 @@ public class GameLoopManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
         InvokeRepeating("SummonTest", 0f, 1f);
-        // InvokeRepeating("RemoveTest", 0f, 0.5f);
     }
-
-    // void RemoveTest()
-    // {
-    //     if(EntitySummoner.EnemiesInGame.Count > 0)
-    //     {
-    //         EntitySummoner.RemoveEnemy(EntitySummoner.EnemiesInGame[Random.Range(0, EntitySummoner.EnemiesInGame.Count)]);
-    //     }
-    // }
 
     void SummonTest()
     {
@@ -112,13 +102,6 @@ public class GameLoopManager : MonoBehaviour
                     EnqueueEnemyToRemove(EntitySummoner.EnemiesInGame[i]);
                 }
             }
- 
-            // if (MoveJobHandle.IsCompleted)
-            // {
-            //     Quaternion rotation = newRotations[0].normalized;
- 
-            //     rb.MoveRotation(rotation);
-            // }
 
             NodeToUse.Dispose();
             EnemySpeeds.Dispose();
@@ -126,6 +109,11 @@ public class GameLoopManager : MonoBehaviour
             EnemyAcces.Dispose();
 
             //Tick Tower
+            foreach(TowerBehavior tower in TowerInGame)
+            {
+                tower.Target = TowerTargetting.GetTarget(tower, TowerTargetting.TargetType.First);
+                tower.Tick();
+            }
 
             //Apply Effects
 
