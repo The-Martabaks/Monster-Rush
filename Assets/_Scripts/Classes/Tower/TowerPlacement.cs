@@ -41,9 +41,8 @@ public class TowerPlacement : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && hitInfo.collider.gameObject != null)
             {
-                currentPlacingTower = null;
-
                 GameLoopManager.TowerInGame.Add(currentPlacingTower.GetComponent<TowerBehavior>());
+                currentPlacingTower = null;
             }
         }
     }
