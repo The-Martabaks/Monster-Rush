@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TowerBehavior : MonoBehaviour
 {
+    public LayerMask EnemiesLayer;
+
     public Enemy Target;
     public Transform TowerPivot;
 
@@ -16,7 +18,7 @@ public class TowerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Delay = 1 - Firerate;
+        Delay = 1 / Firerate;
     }
 
     // Update tower based on gameloop stage
