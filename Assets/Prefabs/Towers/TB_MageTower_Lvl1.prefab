@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3209665801179554732}
-  - component: {fileID: 4414907330242724885}
   - component: {fileID: 3238747969019357066}
   - component: {fileID: 3231068401169577014}
   - component: {fileID: 5832818876046492460}
+  - component: {fileID: -9149178092661678664}
   m_Layer: 0
   m_Name: TB_MageTower_Lvl1
   m_TagString: CannotPlace
@@ -37,18 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4414907330242724885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3206806915599752822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60b70f36c7557c54cbcd78d2ad7f89eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &3238747969019357066
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -112,6 +100,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.317663, y: 7.426416, z: 8.595976}
   m_Center: {x: -0.03924656, y: 2.7719924, z: -0.21398997}
+--- !u!114 &-9149178092661678664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206806915599752822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b70f36c7557c54cbcd78d2ad7f89eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemiesLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  Target: {fileID: 6283722613054493403, guid: 36b38d5ca57e86346be4f17aecb0edf9, type: 3}
+  TowerPivot: {fileID: 3212511453878256240}
+  Damage: 0
+  Firerate: 0
+  Range: 0
 --- !u!1 &3207032482390031430
 GameObject:
   m_ObjectHideFlags: 0
