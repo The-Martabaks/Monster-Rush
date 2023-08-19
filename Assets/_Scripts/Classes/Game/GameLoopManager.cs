@@ -112,6 +112,7 @@ public class GameLoopManager : MonoBehaviour
             foreach(TowerBehavior tower in TowerInGame)
             {
                 tower.Target = TowerTargetting.GetTarget(tower, TowerTargetting.TargetType.First);
+                Debug.Log("First");
                 tower.Tick();
             }
 
