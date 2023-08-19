@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18263908, g: 0.22835062, b: 0.30714542, a: 1}
+  m_IndirectSpecularColor: {r: 0.18263888, g: 0.22835018, b: 0.30714503, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5760,7 +5760,7 @@ MonoBehaviour:
         m_MethodName: setTowerToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3206806915599752822, guid: 9dccdcd7305080940b29c3bc6c30f305,
+          m_ObjectArgument: {fileID: 3206806915599752822, guid: 944f60e207a6a824bbd11d1bcb3c70d5,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
