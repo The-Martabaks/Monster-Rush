@@ -26,7 +26,7 @@ public class TowerBehavior : MonoBehaviour
     {
         if(Target != null)
         {
-            TowerPivot.transform.rotation = Quaternion.LookRotation(Target.transform.position - transform.position);
+            TowerPivot.transform.rotation = Quaternion.LookRotation(Target.transform.position - transform.position, Vector3.forward);
         }
     }
 }
