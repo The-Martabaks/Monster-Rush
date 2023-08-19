@@ -19,16 +19,12 @@ public class TowerTargetting
    public static Enemy GetTarget(TowerBehavior CurrentTower,TargetType TargetMethod)
     {
         Collider[] EnemiesInRange = Physics.OverlapSphere(CurrentTower.transform.position, CurrentTower.Range, CurrentTower.EnemiesLayer);
-        if(EnemiesInRange.Length == 0 )
-        {
-            return null;
-        }
 
         NativeArray<EnemyData> EnemiesToCalculate = new NativeArray<EnemyData>(EnemiesInRange.Length, Allocator.TempJob);
         NativeArray<Vector3> NodePositions = new NativeArray<Vector3>(GameLoopManager.NodePositions, Allocator.TempJob);
         NativeArray<float> NodeDistance = new NativeArray<float>(GameLoopManager.NodeDistance, Allocator.TempJob);
         NativeArray<int> EnemyToIndex = new NativeArray<int>(1, Allocator.TempJob);
-        int EnemyIndexToReturn = -1;
+        int EnemyIndexToReturn = 0;
 
         for(int i = 0; i< EnemiesToCalculate.Length; i++)
         {
@@ -67,7 +63,7 @@ public class TowerTargetting
         JobHandle SearchJobHandle = EnemySearchJob.Schedule(EnemiesToCalculate.Length, dependency);
         SearchJobHandle.Complete();
 
-        EnemyIndexToReturn = EnemiesToCalculate[EnemyToIndex[0]].EnemyIndex;
+        EnemyIndexToReturn = EnemyToIndex[0];
 
         EnemiesToCalculate.Dispose();
         NodePositions.Dispose();
@@ -151,7 +147,7 @@ public class TowerTargetting
         }
         private float GetDistanceToEnd(EnemyData EnemyToEvaluate)
         {
-            float FinalDistance = Vector3.Distance(EnemyToEvaluate.EnemyPosition, _NodePositions[EnemyToEvaluate.NodeIndex - 1]); 
+            float FinalDistance = Vector3.Distance(EnemyToEvaluate.EnemyPosition, _NodePositions[EnemyToEvaluate.NodeIndex]); 
 
             for(int i = EnemyToEvaluate.NodeIndex; i < _NodePositions.Length; i++)
             {
