@@ -26,7 +26,13 @@ public class TowerBehavior : MonoBehaviour
     {
         if(Target != null)
         {
-            TowerPivot.transform.rotation = Quaternion.LookRotation(Target.transform.position - transform.position, Vector3.forward);
+            TowerPivot.transform.rotation = Quaternion.LookRotation(Target.transform.position - transform.position, Vector3.up);
         }
+    }
+
+    private void OnGizmosDrawSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, Target.transform.position);
     }
 }
