@@ -2185,7 +2185,7 @@ PrefabInstance:
     - target: {fileID: 1639067118162091325, guid: 6110ee8f662b3064699bc784c00954c1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1639067118162091325, guid: 6110ee8f662b3064699bc784c00954c1,
         type: 3}
@@ -2375,7 +2375,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &997985086
 MeshCollider:
@@ -5860,7 +5860,7 @@ MonoBehaviour:
         m_MethodName: setTowerToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3206806915599752822, guid: 944f60e207a6a824bbd11d1bcb3c70d5,
+          m_ObjectArgument: {fileID: 289373133605505196, guid: 19934bd676c897a4bb1a0cea150792e8,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
