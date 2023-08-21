@@ -30,7 +30,6 @@ public class TowerTargetting
         {
             Enemy CurrentEnemy = EnemiesInRange[i].transform.parent.GetComponent<Enemy>();
             int EnemyIndexInList = EntitySummoner.EnemiesInGame.FindIndex(x => x == CurrentEnemy);
-
             EnemiesToCalculate[i] = new EnemyData(CurrentEnemy.transform.position, CurrentEnemy.NodeIndex, CurrentEnemy.Healt, EnemyIndexInList);
         }
 
@@ -40,7 +39,6 @@ public class TowerTargetting
             _NodeDistances = NodeDistance,
             _NodePositions = NodePositions,
             _EnemyToIndex = EnemyToIndex,
-            CompareValue = Mathf.Infinity,
             TargetingType = (int)TargetMethod,
             TowerPosition = CurrentTower.transform.position
         };
@@ -97,10 +95,10 @@ public class TowerTargetting
 
     struct SearchForEnemy : IJobFor
     {
-        [ReadOnly] public NativeArray<EnemyData> _EnemiesToCalculate;
-        [ReadOnly] public NativeArray<Vector3> _NodePositions;
-        [ReadOnly] public NativeArray<float> _NodeDistances;
-        [NativeDisableParallelForRestriction] public NativeArray<int> _EnemyToIndex;
+        public NativeArray<EnemyData> _EnemiesToCalculate;
+        public NativeArray<Vector3> _NodePositions;
+        public NativeArray<float> _NodeDistances;
+        public NativeArray<int> _EnemyToIndex;
         public Vector3 TowerPosition;
         public float CompareValue;
         public int TargetingType;
