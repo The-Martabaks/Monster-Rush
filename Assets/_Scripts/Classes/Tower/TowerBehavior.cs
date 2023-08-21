@@ -30,9 +30,9 @@ public class TowerBehavior : MonoBehaviour
         }
     }
 
-    private void OnGizmosDrawSelected()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, Target.transform.position);
+        Gizmos.DrawLine(Target.transform.position, transform.position);
     }
 }
