@@ -54,7 +54,7 @@ MonoBehaviour:
   TowerPivot: {fileID: 2913684732254595930}
   Damage: 0
   Firerate: 0
-  Range: 0
+  Range: 4
 --- !u!65 &1034655992161613862
 BoxCollider:
   m_ObjectHideFlags: 0
