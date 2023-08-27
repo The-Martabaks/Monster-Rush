@@ -17,7 +17,7 @@ public class BuildViewMovement : MonoBehaviour
 
     void Update() {
         PlayerMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
 
         MovePlayer();
         MovePlayerCamera();
@@ -26,12 +26,12 @@ public class BuildViewMovement : MonoBehaviour
     private void MovePlayer(){
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput);
 
-        if(Input.GetKey(KeyCode.Space)){
-            Velocity.y = 1f;
-        }
-        else if(Input.GetKey(KeyCode.LeftShift)){
-            Velocity.y = -1f;
-        }
+        // if(Input.GetKey(KeyCode.Space)){
+        //     Velocity.y = 1f;
+        // }
+        // else if(Input.GetKey(KeyCode.LeftShift)){
+        //     Velocity.y = -1f;
+        // }
 
         Controller.Move(MoveVector * Speed * Time.deltaTime);
         Controller.Move(Velocity * Speed * Time.deltaTime);
@@ -42,6 +42,6 @@ public class BuildViewMovement : MonoBehaviour
     private void MovePlayerCamera(){
         xRot -= PlayerMouseInput.y * Sensitivity;
         transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        // PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
     }
 }
