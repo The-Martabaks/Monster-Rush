@@ -22,14 +22,19 @@ public class TowerPlacement : MonoBehaviour
         {
             Ray camray = playerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if(Physics.Raycast(camray, out hitInfo, 100f))
+            if(Physics.Raycast(camray, out hitInfo, 10000f))
             {
                 towerPoint = hitInfo.collider.gameObject.transform;
                 if (hitInfo.collider.gameObject.CompareTag("CanPlace"))
                 {
                     currentPlacingTower.transform.position = towerPoint.position;
                 }
-                
+
+                if (Input.GetMouseButtonDown(0) && hitInfo.collider.gameObject != null)
+                {
+                    GameLoopManager.TowerInGame.Add(currentPlacingTower.GetComponent<TowerBehavior>());
+                    currentPlacingTower = null;
+                }
             }
 
             if(Input.GetKeyDown(KeyCode.Q))
@@ -37,12 +42,6 @@ public class TowerPlacement : MonoBehaviour
                 Destroy(currentPlacingTower);
                 currentPlacingTower = null;
                 return;
-            }
-
-            if (Input.GetMouseButtonDown(0) && hitInfo.collider.gameObject != null)
-            {
-                GameLoopManager.TowerInGame.Add(currentPlacingTower.GetComponent<TowerBehavior>());
-                currentPlacingTower = null;
             }
         }
     }
