@@ -55,6 +55,12 @@ public class TowerTargetting
 
             case 2: // Close
                 goto case 0;
+
+            case 3: // Strong
+                goto case 1;
+
+            case 4: //Weak
+                goto case 0;
         }
 
         JobHandle dependency = new JobHandle();
@@ -140,6 +146,22 @@ public class TowerTargetting
                         CompareValue = DistanceToEnemy;
                     }
 
+                    break;
+                case 3: //Strong
+
+                    if( _EnemiesToCalculate[index].Healt > CompareValue)
+                    {
+                        _EnemyToIndex[0] = index;
+                        CompareValue = _EnemiesToCalculate[index].Healt;
+                    }
+                    break;
+                case 4: //Weak
+
+                    if( _EnemiesToCalculate[index].Healt < CompareValue)
+                    {
+                        _EnemyToIndex[0] = index;
+                        CompareValue = _EnemiesToCalculate[index].Healt;
+                    }
                     break;
             }
         }
