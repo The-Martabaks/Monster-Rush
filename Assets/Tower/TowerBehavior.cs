@@ -9,6 +9,7 @@ public class TowerBehavior : MonoBehaviour
     public Enemy Target;
     public Transform TowerPivot;
 
+    public int SummontCost = 100;
     public float Damage;
     public float Firerate;
     public float Range;
