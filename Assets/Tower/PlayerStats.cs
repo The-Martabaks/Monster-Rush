@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     public void AddMoney(int MoneyToAdd)
     {
         CurrentMoney += MoneyToAdd;
-        MoneyDisplayText.SetText($"${StartingMoney}");
+        MoneyDisplayText.SetText($"${CurrentMoney}");
     }
 
     public int GetMoney()
