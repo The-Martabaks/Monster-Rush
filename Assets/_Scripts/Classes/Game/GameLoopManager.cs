@@ -14,6 +14,8 @@ public class GameLoopManager : MonoBehaviour
     public static Vector3[] NodePositions;
     public Transform NodeParent;
 
+    private PlayerStats PlayerStatistics;
+
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
 
@@ -21,6 +23,8 @@ public class GameLoopManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        PlayerStatistics = FindAnyObjectByType<PlayerStats>();
+
         TowerInGame = new List<TowerBehavior>();
 
         EnemyIDsToSummon = new Queue<int>();
@@ -126,6 +130,7 @@ public class GameLoopManager : MonoBehaviour
                 for(int i = 0; i < EnemiesToRemove.Count; i++)
                 {
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
+                    PlayerStatistics.AddMoney(500);
                 }
             }
 
