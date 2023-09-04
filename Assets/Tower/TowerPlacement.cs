@@ -33,7 +33,10 @@ public class TowerPlacement : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0) && hitInfo.collider.gameObject != null)
                 {
-                    GameLoopManager.TowerInGame.Add(currentPlacingTower.GetComponent<TowerBehavior>());
+                    TowerBehavior CurrentTowerBehavior = currentPlacingTower.GetComponent<TowerBehavior>();
+                    GameLoopManager.TowerInGame.Add(CurrentTowerBehavior);
+
+                    PlayerStatics.AddMoney(-CurrentTowerBehavior.SummontCost);
                     currentPlacingTower = null;
                 }
             }
@@ -54,7 +57,7 @@ public class TowerPlacement : MonoBehaviour
         if(PlayerStatics.GetMoney() >= TowerSummontCost)
         {
             currentPlacingTower = Instantiate(tower, Vector3.zero, Quaternion.identity);
-            PlayerStatics.AddMoney(-TowerSummontCost);
+            
         }
         else
         {
