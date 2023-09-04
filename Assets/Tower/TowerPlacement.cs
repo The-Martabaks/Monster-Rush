@@ -54,6 +54,7 @@ public class TowerPlacement : MonoBehaviour
         if(PlayerStatics.GetMoney() >= TowerSummontCost)
         {
             currentPlacingTower = Instantiate(tower, Vector3.zero, Quaternion.identity);
+            PlayerStatics.AddMoney(-TowerSummontCost);
         }
         else
         {
