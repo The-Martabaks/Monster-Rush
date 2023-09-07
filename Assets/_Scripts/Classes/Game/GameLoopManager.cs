@@ -19,6 +19,9 @@ public class GameLoopManager : MonoBehaviour
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
 
+    // For Mining
+    public static int TotalCoin = 0;
+
     public bool LoopShouldEnd;
     // Start is called before the first frame update
     private void Start()
@@ -137,6 +140,9 @@ public class GameLoopManager : MonoBehaviour
             //Remove Towers
 
             yield return null;
+
+            // Mining Resources
+            
         }
 
     }
