@@ -9,7 +9,7 @@ using Unity.Collections;
 public class GameLoopManager : MonoBehaviour
 {
     public static float[] NodeDistance;
-    public static List<TowerBehavior> TowerInGame;
+    public static List<Tower> TowerInGame;
 
     public static Vector3[] NodePositions;
     public Transform NodeParent;
@@ -28,7 +28,7 @@ public class GameLoopManager : MonoBehaviour
     {
         PlayerStatistics = FindAnyObjectByType<PlayerStats>();
 
-        TowerInGame = new List<TowerBehavior>();
+        TowerInGame = new List<Tower>();
 
         EnemyIDsToSummon = new Queue<int>();
         EnemiesToRemove = new Queue<Enemy>();
