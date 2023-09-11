@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8489403172444334715}
   - component: {fileID: 4955269743987952591}
   - component: {fileID: 1034655992161613862}
+  - component: {fileID: -3648632629550790934}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
     m_Bits: 64
   Target: {fileID: 6283722613054493403, guid: 36b38d5ca57e86346be4f17aecb0edf9, type: 3}
   TowerPivot: {fileID: 2913684732254595930}
+  SummontCost: 100
   Damage: 0
   Firerate: 0
   Range: 4
@@ -68,6 +70,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.52, z: 0}
+--- !u!114 &-3648632629550790934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289373133605505196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c176727f9d1bf4f819975d47020fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3443286139874146962
 PrefabInstance:
   m_ObjectHideFlags: 0

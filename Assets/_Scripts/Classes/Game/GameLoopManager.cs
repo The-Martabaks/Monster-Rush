@@ -18,6 +18,7 @@ public class GameLoopManager : MonoBehaviour
 
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
+    private static Queue<EnemyDamageData> DamageData;
 
     // For Mining
     public static int TotalCoin = 0;
@@ -32,6 +33,7 @@ public class GameLoopManager : MonoBehaviour
 
         EnemyIDsToSummon = new Queue<int>();
         EnemiesToRemove = new Queue<Enemy>();
+        DamageData = new Queue<EnemyDamageData>();
         EntitySummoner.Init();
 
         NodePositions = new Vector3[NodeParent.childCount];
@@ -126,11 +128,24 @@ public class GameLoopManager : MonoBehaviour
             //Apply Effects
 
             //Damage Enemies
+            if (DamageData.Count > 0)
+            {
+                for (int i = 0; i < DamageData.Count; i++)
+                {
+                    EnemyDamageData CurrentDamageData = DamageData.Dequeue();
+                    CurrentDamageData.TargetedEnemy.Healt -= CurrentDamageData.TotalDamage / CurrentDamageData.Resistance;
+
+                    if (CurrentDamageData.TargetedEnemy.Healt <= 0f)
+                    {
+                        EnqueueEnemyToRemove(CurrentDamageData.TargetedEnemy);
+                    }
+                }
+            }
 
             //Remove Enemies
-            if(EnemiesToRemove.Count > 0)
+            if (EnemiesToRemove.Count > 0)
             {
-                for(int i = 0; i < EnemiesToRemove.Count; i++)
+                for (int i = 0; i < EnemiesToRemove.Count; i++)
                 {
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                     PlayerStatistics.AddMoney(500);
@@ -147,6 +162,11 @@ public class GameLoopManager : MonoBehaviour
 
     }
 
+    public static void EnqueueDamageData(EnemyDamageData damagedata)
+    {
+        DamageData.Enqueue(damagedata);
+    }
+
     public static void EnqueueEnemyIDsToSummon(int ID)
     {
         EnemyIDsToSummon.Enqueue(ID);
@@ -157,6 +177,20 @@ public class GameLoopManager : MonoBehaviour
         EnemiesToRemove.Enqueue(EnemyToRemove);
     }
 
+}
+
+public struct EnemyDamageData
+{
+    public EnemyDamageData(Enemy target, float damage, float resistance)
+    {
+        TargetedEnemy = target;
+        TotalDamage = damage;
+        Resistance = resistance;
+    }
+
+    public Enemy TargetedEnemy;
+    public float TotalDamage;
+    public float Resistance;
 }
 
 public struct MoveEnemiesJob : IJobParallelForTransform

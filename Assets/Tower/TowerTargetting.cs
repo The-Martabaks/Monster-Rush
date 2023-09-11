@@ -23,7 +23,7 @@ public class TowerTargetting
         NativeArray<EnemyData> EnemiesToCalculate = new NativeArray<EnemyData>(EnemiesInRange.Length, Allocator.TempJob);
         NativeArray<Vector3> NodePositions = new NativeArray<Vector3>(GameLoopManager.NodePositions, Allocator.TempJob);
         NativeArray<float> NodeDistance = new NativeArray<float>(GameLoopManager.NodeDistance, Allocator.TempJob);
-        NativeArray<int> EnemyToIndex = new NativeArray<int>(1, Allocator.TempJob);
+        NativeArray<int> EnemyToIndex = new NativeArray<int>(new int[] { -1 }, Allocator.TempJob);
         int EnemyIndexToReturn = 0;
 
         for(int i = 0; i< EnemiesToCalculate.Length; i++)
@@ -35,7 +35,7 @@ public class TowerTargetting
 
         SearchForEnemy EnemySearchJob = new SearchForEnemy
         {
-            _EnemiesToCalculate =  EnemiesToCalculate,
+            _EnemiesToCalculate = EnemiesToCalculate,
             _NodeDistances = NodeDistance,
             _NodePositions = NodePositions,
             _EnemyToIndex = EnemyToIndex,
@@ -45,7 +45,7 @@ public class TowerTargetting
 
         switch ((int)TargetMethod)
         {
-            case 0: // Fisrt
+            case 0: // First
                 EnemySearchJob.CompareValue = Mathf.Infinity;
                 break;
 
@@ -67,18 +67,22 @@ public class TowerTargetting
         JobHandle SearchJobHandle = EnemySearchJob.Schedule(EnemiesToCalculate.Length, dependency);
         SearchJobHandle.Complete();
 
-        EnemyIndexToReturn = EnemyToIndex[0];
+        if(EnemyToIndex[0] != -1)
+        {
+            EnemyIndexToReturn = EnemiesToCalculate[EnemyToIndex[0]].EnemyIndex;
+            EnemiesToCalculate.Dispose();
+            NodePositions.Dispose();
+            NodeDistance.Dispose();
+            EnemyToIndex.Dispose();
+            return EntitySummoner.EnemiesInGame[EnemyIndexToReturn];
+        }
 
         EnemiesToCalculate.Dispose();
         NodePositions.Dispose();
         NodeDistance.Dispose();
         EnemyToIndex.Dispose();
+        return null;
 
-        if(EnemyIndexToReturn == -1)
-        {
-            return null;
-        }
-        return EntitySummoner.EnemiesInGame[EnemyIndexToReturn];
     }
 
     struct EnemyData
