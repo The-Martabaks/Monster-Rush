@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public int SummontCost = 100;
     public Enemy target;
     int CloseEnemy = 0;
     public float maxDistance;
