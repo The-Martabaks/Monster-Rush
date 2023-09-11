@@ -109,12 +109,11 @@ public class GameLoopManager : MonoBehaviour
             EnemyAcces.Dispose();
 
             //Tick Tower
-            foreach(TowerBehavior tower in TowerInGame)
-            {
-                tower.Target = TowerTargetting.GetTarget(tower, TowerTargetting.TargetType.First);
-                Debug.Log("First");
-                tower.Tick();
-            }
+            // foreach(TowerBehavior tower in TowerInGame)
+            // {
+            //     tower.Target = TowerTargetting.GetTarget(tower, TowerTargetting.TargetType.First);
+            //     tower.Tick();
+            // }
 
             //Apply Effects
 
