@@ -61,7 +61,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6283722613054493403, guid: 36b38d5ca57e86346be4f17aecb0edf9, type: 3}
-  maxDistance: 15
+  maxDistance: 40
+  SummontCost: 100
+  m_Enemy: {fileID: 0}
+  damage: 5
 --- !u!1001 &3443286139874146962
 PrefabInstance:
   m_ObjectHideFlags: 0
