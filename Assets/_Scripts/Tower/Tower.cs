@@ -24,9 +24,9 @@ public class Tower : MonoBehaviour
         {
             if(EntitySummoner.EnemiesInGame[CloseEnemy] != null)
             {
-                float CurrentDistence = Vector3.Distance(EntitySummoner.EnemiesInGame[CloseEnemy].transform.position, gameObject.transform.position);
+                float CurrentDistance = Vector3.Distance(EntitySummoner.EnemiesInGame[CloseEnemy].transform.position, gameObject.transform.position);
                 float nextDistance = Vector3.Distance(EntitySummoner.EnemiesInGame[i].transform.position, gameObject.transform.position);
-                if (nextDistance < CurrentDistence)
+                if (nextDistance < CurrentDistance)
                 {
                     CloseEnemy = i;
                 }
@@ -49,7 +49,7 @@ public class Tower : MonoBehaviour
             else
             {
                 transform.LookAt(target.transform.position);
-                if (0 < target.GetComponent<Enemy>().MaxHealth)
+                if (target.GetComponent<Enemy>().MaxHealth > 0)
                 {
                     StartCoroutine(attack());
                 }
@@ -73,6 +73,6 @@ public class Tower : MonoBehaviour
     {
         Destroy(target.gameObject);
         EntitySummoner.EnemiesInGame.RemoveAt(CloseEnemy);
-        Debug.Log("destroy index:" + EntitySummoner.EnemiesInGame[CloseEnemy]);
+        Debug.Log("destroy index:" + CloseEnemy);
     }
 }
