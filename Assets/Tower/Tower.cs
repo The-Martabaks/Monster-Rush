@@ -7,6 +7,7 @@ public class Tower : MonoBehaviour
     public Enemy target;
     int CloseEnemy = 0;
     public float maxDistance;
+    public int SummontCost = 100;
 
     // Update is called once per frame
     void Update()
