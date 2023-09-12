@@ -49,10 +49,7 @@ public class Tower : MonoBehaviour
             else
             {
                 transform.LookAt(target.transform.position);
-                if (target.GetComponent<Enemy>().MaxHealth > 0)
-                {
-                    StartCoroutine(attack());
-                }
+                StartCoroutine(attack());
             }
 
             if (target.GetComponent<Enemy>().MaxHealth == 0)
@@ -65,7 +62,10 @@ public class Tower : MonoBehaviour
     IEnumerator attack()
     {
         yield return new WaitForSeconds(3);
-        target.GetComponent<Enemy>().MaxHealth -= damage;
+        if (target.GetComponent<Enemy>().MaxHealth > 0)
+        {
+            target.GetComponent<Enemy>().MaxHealth -= damage;
+        }
         Debug.Log("Health: " + target.GetComponent<Enemy>().MaxHealth);
     }
 
