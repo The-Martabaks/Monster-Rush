@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeIndex: 0
-  MaxHealt: 5
+  DamageResistance: 1
+  MaxHealt: 10
   Healt: 0
   Speed: 4
   ID: 0
