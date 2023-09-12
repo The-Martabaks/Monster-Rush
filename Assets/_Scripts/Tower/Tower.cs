@@ -15,7 +15,7 @@ public class Tower : MonoBehaviour
     void Start()
     {
         m_Enemy = target.GetComponent<Enemy>();
-        m_Enemy.MaxHealt = 10;
+        m_Enemy.MaxHealth = 10;
 
     }
     void Update()
@@ -31,40 +31,48 @@ public class Tower : MonoBehaviour
                     CloseEnemy = i;
                 }
             }
+            else
+            {
+                CloseEnemy = i;
+            }
 
         }
         target = EntitySummoner.EnemiesInGame[CloseEnemy];
 
-        if(Vector3.Distance(target.transform.position, transform.position) > maxDistance)
+        if(target != null)
         {
-            transform.rotation= Quaternion.identity;
-            target = null;
-        }
-        else
-        {
-            transform.LookAt(target.transform.position);
-            StartCoroutine(attack());
-        }
+            if (Vector3.Distance(target.transform.position, transform.position) > maxDistance)
+            {
+                transform.rotation = Quaternion.identity;
+                target = null;
+            }
+            else
+            {
+                transform.LookAt(target.transform.position);
+                if (0 < target.GetComponent<Enemy>().MaxHealth)
+                {
+                    StartCoroutine(attack());
+                }
+            }
 
-        //destroyEnemy();
+            if (target.GetComponent<Enemy>().MaxHealth == 0)
+            {
+                destroyEnemy();
+            }
+        }
     }
 
     IEnumerator attack()
     {
-        if(2 <= m_Enemy.MaxHealt)
-        {
-            m_Enemy.MaxHealt -= damage;
-        }
-        Debug.Log("Health: " + m_Enemy.MaxHealt);
         yield return new WaitForSeconds(3);
-        destroyEnemy();
+        target.GetComponent<Enemy>().MaxHealth -= damage;
+        Debug.Log("Health: " + target.GetComponent<Enemy>().MaxHealth);
     }
 
     void destroyEnemy()
     {
-        if (m_Enemy.MaxHealt == 0 && EntitySummoner.EnemiesInGame[CloseEnemy] != null)
-        {
-            Destroy(target.gameObject);
-        }
+        Destroy(target.gameObject);
+        EntitySummoner.EnemiesInGame.RemoveAt(CloseEnemy);
+        Debug.Log("destroy index:" + EntitySummoner.EnemiesInGame[CloseEnemy]);
     }
 }

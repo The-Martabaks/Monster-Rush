@@ -9,23 +9,23 @@ public class Enemy : MonoBehaviour
 
     public float DamageResistance = 1f;
     [SerializeField]
-    public float MaxHealt;
-    public float Healt;
+    public float MaxHealth;
+    public float Health;
     public float Speed;
     public int ID;
 
 
     private void Start()
     {
-        MaxHealt = 10f;
+        MaxHealth = 10f;
     }
 
 
     // Initialization
     public void Init()
-      {
+    {
         //MaxHealt = Healt;
         transform.position = GameLoopManager.NodePositions[0];
         NodeIndex = 0;
-      }
+    }
 }
