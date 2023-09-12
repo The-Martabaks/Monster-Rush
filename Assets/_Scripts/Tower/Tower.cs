@@ -12,67 +12,75 @@ public class Tower : MonoBehaviour
     public float damage = 2f;
 
     // Update is called once per frame
-    void Start()
-    {
-        m_Enemy = target.GetComponent<Enemy>();
-        m_Enemy.MaxHealth = 10;
-
-    }
+    private bool _isAttacking = false;
     void Update()
     {
-        for( int i = 0; i < EntitySummoner.EnemiesInGame.Count; i++)
+        if (EntitySummoner.EnemiesInGame.Count > 0)
         {
-            if(EntitySummoner.EnemiesInGame[CloseEnemy] != null)
+            CloseEnemy = 0;
+            for (int i = 0; i < EntitySummoner.EnemiesInGame.Count; i++)
             {
-                float CurrentDistance = Vector3.Distance(EntitySummoner.EnemiesInGame[CloseEnemy].transform.position, gameObject.transform.position);
-                float nextDistance = Vector3.Distance(EntitySummoner.EnemiesInGame[i].transform.position, gameObject.transform.position);
-                if (nextDistance < CurrentDistance)
+                if (EntitySummoner.EnemiesInGame[CloseEnemy] != null)
+                {
+                    float CurrentDistance = Vector3.Distance(EntitySummoner.EnemiesInGame[CloseEnemy].transform.position, gameObject.transform.position);
+                    float nextDistance = Vector3.Distance(EntitySummoner.EnemiesInGame[i].transform.position, gameObject.transform.position);
+                    if (nextDistance < CurrentDistance)
+                    {
+                        CloseEnemy = i;
+                    }
+                }
+                else
                 {
                     CloseEnemy = i;
                 }
-            }
-            else
-            {
-                CloseEnemy = i;
-            }
+                target = EntitySummoner.EnemiesInGame[CloseEnemy];
 
-        }
-        target = EntitySummoner.EnemiesInGame[CloseEnemy];
+                Debug.Log(target.gameObject.activeInHierarchy);
 
-        if(target != null)
-        {
-            if (Vector3.Distance(target.transform.position, transform.position) > maxDistance)
-            {
-                transform.rotation = Quaternion.identity;
-                target = null;
-            }
-            else
-            {
-                transform.LookAt(target.transform.position);
-                StartCoroutine(attack());
-            }
+                if (Vector3.Distance(target.transform.position, transform.position) > maxDistance || !target.gameObject.activeInHierarchy)
+                {
+                    Debug.Log("Outside Range");
+                    transform.rotation = Quaternion.identity;
+                    target = null;
+                }
 
-            if (target.GetComponent<Enemy>().MaxHealth == 0)
-            {
-                destroyEnemy();
+                if (target != null)
+                {
+                    transform.LookAt(target.transform.position);
+                    if (!_isAttacking)
+                    {
+                        StartCoroutine(attack());
+                    }
+                    if (target.GetComponent<Enemy>().MaxHealth == 0)
+                    {
+                        destroyEnemy();
+                    }
+                }
             }
         }
     }
 
     IEnumerator attack()
     {
-        yield return new WaitForSeconds(3);
-        if (target.GetComponent<Enemy>().MaxHealth > 0)
+        Debug.Log("Wait Attack");
+        _isAttacking = true;
+        Debug.Log("Attack");
+        if (target != null)
         {
-            target.GetComponent<Enemy>().MaxHealth -= damage;
+            if (target.GetComponent<Enemy>().MaxHealth > 0)
+            {
+                target.GetComponent<Enemy>().MaxHealth -= damage;
+            }
         }
         Debug.Log("Health: " + target.GetComponent<Enemy>().MaxHealth);
+        yield return new WaitForSeconds(3);
+        Debug.Log("Next Attack");
+        _isAttacking = false;
     }
 
     void destroyEnemy()
     {
-        Destroy(target.gameObject);
-        EntitySummoner.EnemiesInGame.RemoveAt(CloseEnemy);
+        target.gameObject.SetActive(false);
         Debug.Log("destroy index:" + CloseEnemy);
     }
 }
