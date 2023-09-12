@@ -14,17 +14,26 @@ public class GameLoopManager : MonoBehaviour
     public static Vector3[] NodePositions;
     public Transform NodeParent;
 
+    private PlayerStats PlayerStatistics;
+
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
+    private static Queue<EnemyDamageData> DamageData;
+
+    // For Mining
+    public static int TotalCoin = 0;
 
     public bool LoopShouldEnd;
     // Start is called before the first frame update
     private void Start()
     {
+        PlayerStatistics = FindAnyObjectByType<PlayerStats>();
+
         TowerInGame = new List<TowerBehavior>();
 
         EnemyIDsToSummon = new Queue<int>();
         EnemiesToRemove = new Queue<Enemy>();
+        DamageData = new Queue<EnemyDamageData>();
         EntitySummoner.Init();
 
         NodePositions = new Vector3[NodeParent.childCount];
@@ -109,31 +118,52 @@ public class GameLoopManager : MonoBehaviour
             EnemyAcces.Dispose();
 
             //Tick Tower
-            foreach(TowerBehavior tower in TowerInGame)
-            {
-                tower.Target = TowerTargetting.GetTarget(tower, TowerTargetting.TargetType.First);
-                Debug.Log("First");
-                tower.Tick();
-            }
+            // foreach(TowerBehavior tower in TowerInGame)
+            // {
+            //     tower.Target = TowerTargetting.GetTarget(tower, TowerTargetting.TargetType.First);
+            //     tower.Tick();
+            // }
 
             //Apply Effects
 
             //Damage Enemies
+            /*if (DamageData.Count > 0)
+            {
+                for (int i = 0; i < DamageData.Count; i++)
+                {
+                    EnemyDamageData CurrentDamageData = DamageData.Dequeue();
+                    CurrentDamageData.TargetedEnemy.Health -= CurrentDamageData.TotalDamage / CurrentDamageData.Resistance;
+
+                    if (CurrentDamageData.TargetedEnemy.Health <= 0f)
+                    {
+                        EnqueueEnemyToRemove(CurrentDamageData.TargetedEnemy);
+                    }
+                }
+            }*/
 
             //Remove Enemies
-            if(EnemiesToRemove.Count > 0)
+            if (EnemiesToRemove.Count > 0)
             {
-                for(int i = 0; i < EnemiesToRemove.Count; i++)
+                for (int i = 0; i < EnemiesToRemove.Count; i++)
                 {
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
+                    PlayerStatistics.AddMoney(500);
                 }
             }
 
             //Remove Towers
 
             yield return null;
+
+            // Mining Resources
+            
         }
 
+    }
+
+    public static void EnqueueDamageData(EnemyDamageData damagedata)
+    {
+        DamageData.Enqueue(damagedata);
     }
 
     public static void EnqueueEnemyIDsToSummon(int ID)
@@ -146,6 +176,20 @@ public class GameLoopManager : MonoBehaviour
         EnemiesToRemove.Enqueue(EnemyToRemove);
     }
 
+}
+
+public struct EnemyDamageData
+{
+    public EnemyDamageData(Enemy target, float damage, float resistance)
+    {
+        TargetedEnemy = target;
+        TotalDamage = damage;
+        Resistance = resistance;
+    }
+
+    public Enemy TargetedEnemy;
+    public float TotalDamage;
+    public float Resistance;
 }
 
 public struct MoveEnemiesJob : IJobParallelForTransform

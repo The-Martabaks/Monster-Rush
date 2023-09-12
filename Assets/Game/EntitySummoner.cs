@@ -56,6 +56,7 @@ public class EntitySummoner : MonoBehaviour
                 SummonEnemy = ReferenceQueue.Dequeue();
                 SummonEnemy.Init();
                 SummonEnemy.gameObject.SetActive(true);
+                SummonEnemy.MaxHealth = 10f;
             }
             else
             {

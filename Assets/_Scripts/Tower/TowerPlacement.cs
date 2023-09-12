@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
 {
+    [SerializeField] private PlayerStats PlayerStatics;
     [SerializeField] private Camera playerCamera;
 
     private GameObject currentPlacingTower;
@@ -32,7 +33,10 @@ public class TowerPlacement : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0) && hitInfo.collider.gameObject != null)
                 {
-                    GameLoopManager.TowerInGame.Add(currentPlacingTower.GetComponent<TowerBehavior>());
+                    Tower CurrentTower = currentPlacingTower.GetComponent<Tower>();
+                    //GameLoopManager.TowerInGame.Add(CurrentTower);
+
+                    PlayerStatics.AddMoney(-CurrentTower.SummontCost);
                     currentPlacingTower = null;
                 }
             }
@@ -48,6 +52,17 @@ public class TowerPlacement : MonoBehaviour
 
     public void setTowerToPlace(GameObject tower)
     {
-        currentPlacingTower = Instantiate(tower, Vector3.zero, Quaternion.identity);
+        int TowerSummontCost = tower.GetComponent<Tower>().SummontCost;
+
+        if(PlayerStatics.GetMoney() >= TowerSummontCost)
+        {
+            currentPlacingTower = Instantiate(tower, Vector3.zero, Quaternion.identity);
+            
+        }
+        else
+        {
+            Debug.Log("You need more money to purchase a" + tower);
+        }
+
     }
 }

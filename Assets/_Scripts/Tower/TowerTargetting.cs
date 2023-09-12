@@ -23,14 +23,14 @@ public class TowerTargetting
         NativeArray<EnemyData> EnemiesToCalculate = new NativeArray<EnemyData>(EnemiesInRange.Length, Allocator.TempJob);
         NativeArray<Vector3> NodePositions = new NativeArray<Vector3>(GameLoopManager.NodePositions, Allocator.TempJob);
         NativeArray<float> NodeDistance = new NativeArray<float>(GameLoopManager.NodeDistance, Allocator.TempJob);
-        NativeArray<int> EnemyToIndex = new NativeArray<int>(1, Allocator.TempJob);
-        int EnemyIndexToReturn = 0;
+        NativeArray<int> EnemyToIndex = new NativeArray<int>(new int[] {-1}, Allocator.TempJob);
+        int EnemyIndexToReturn = -1;
 
         for(int i = 0; i< EnemiesToCalculate.Length; i++)
         {
             Enemy CurrentEnemy = EnemiesInRange[i].transform.parent.GetComponent<Enemy>();
             int EnemyIndexInList = EntitySummoner.EnemiesInGame.FindIndex(x => x == CurrentEnemy);
-            EnemiesToCalculate[i] = new EnemyData(CurrentEnemy.transform.position, CurrentEnemy.NodeIndex, CurrentEnemy.Healt, EnemyIndexInList);
+            EnemiesToCalculate[i] = new EnemyData(CurrentEnemy.transform.position, CurrentEnemy.NodeIndex, CurrentEnemy.Health, EnemyIndexInList);
         }
 
         SearchForEnemy EnemySearchJob = new SearchForEnemy
