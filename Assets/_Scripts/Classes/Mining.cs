@@ -28,6 +28,5 @@ public class Mining : MonoBehaviour
         yield return new WaitForSeconds(5);
         GameLoopManager.TotalCoin += (100 * baseLevel);
         StartCoroutine(Coin());
-
-    } 
+    }
 }
