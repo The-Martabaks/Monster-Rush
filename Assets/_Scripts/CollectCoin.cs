@@ -16,6 +16,7 @@ public class CollectCoin : MonoBehaviour
         PlayerStatistics.AddMoney(GameLoopManager.TotalCoin);
         GameLoopManager.TotalCoin = 0;
         Destroy(hit.gameObject);
+        FindAnyObjectByType<Mining>().StopCoroutine();
         }
     }
 }
