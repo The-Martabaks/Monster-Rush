@@ -21,4 +21,14 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene("Fix Environment");
     }
+
+    public void ShowCredits()
+    {
+
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
