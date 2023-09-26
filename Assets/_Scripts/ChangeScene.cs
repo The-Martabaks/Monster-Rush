@@ -19,12 +19,17 @@ public class ChangeScene : MonoBehaviour
 
     public void ChangeToFixEnvironment()
     {
-        SceneManager.LoadScene("Fix Environment");
+        SceneManager.LoadScene("Develop Environment");
     }
 
     public void ShowCredits()
     {
+        SceneManager.LoadScene("Credits");
+    }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public void ExitGame()
