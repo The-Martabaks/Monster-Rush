@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     public float damage = 2f;
 
     public GameObject particleExplode;
+    // private GameObject Part;
 
     // Update is called once per frame
     private bool _isAttacking = false;
@@ -82,7 +83,8 @@ public class Tower : MonoBehaviour
 
     void destroyEnemy()
     {
-        particleExplode.transform.position = target.gameObject.transform.position;
+        Instantiate(particleExplode,target.gameObject.transform.position, Quaternion.identity);
+        // particleExplode.transform.position = target.gameObject.transform.position;
         target.gameObject.SetActive(false);
         Debug.Log("destroy index:" + CloseEnemy);
 
