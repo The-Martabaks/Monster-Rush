@@ -65,6 +65,8 @@ MonoBehaviour:
   SummontCost: 100
   m_Enemy: {fileID: 0}
   damage: 5
+  particleExplode: {fileID: 6716933543107358056, guid: 8a334e7c388e77347a1dddd727ef3446,
+    type: 3}
 --- !u!1001 &3443286139874146962
 PrefabInstance:
   m_ObjectHideFlags: 0
